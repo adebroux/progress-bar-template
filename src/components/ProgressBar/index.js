@@ -2,11 +2,12 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
 const ProgressBar = props => {
-  const { color, text } = props
+  const { min, max, color, secondaryColor } = props
 
   return (
     <View style={styles.wrapper}>
-      <Text style={{ color }}>{text}</Text>
+      <View style={{ backgroundColor: color, flex: 1 }}></View>
+      <View style={{ backgroundColor: color, flex: 0.25 }}></View>
     </View>
   )
 }
