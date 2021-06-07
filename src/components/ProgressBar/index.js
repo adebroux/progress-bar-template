@@ -2,14 +2,15 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
 const ProgressBar = props => {
-  const { min, max, color, secondaryColor } = props
-
-  return (
-    <View style={styles.wrapper}>
-      <View style={{ backgroundColor: color, flex: 1 }}></View>
-      <View style={{ backgroundColor: color, flex: 0.25 }}></View>
-    </View>
-  )
+    const { variable, min, max, color, secondaryColor } = props
+    const firstBar = variable - min
+    const secondBar = max - variable
+    return (
+        <View style={styles.wrapper}>
+            <View style={{ backgroundColor: secondaryColor, flex: firstBar, height: 10 }} />
+            <View style={{ backgroundColor: color, flex: secondBar, height: 10 }} />
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -17,6 +18,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    height: 50,
+    flexDirection: "row",
   },
 })
 

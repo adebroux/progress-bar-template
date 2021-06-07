@@ -6,22 +6,22 @@
   "icon": "./example-thumbnail.png",
   "props": [
     {
-      "name": "text",
-      "displayName": "Text",
-      "type": "text",
-      "default": "Happy Hacking"
+      "name": "variable",
+      "displayName": "What is this progress for?",
+      "type": "number",
+      "default": 1
     },
     {
       "name": "min",
       "displayName": "Min",
       "type": "number",
-      "default": 10
+      "default": 0
     },
     {
       "name": "max",
       "displayName": "Max",
       "type": "number",
-      "default": 100
+      "default": 20
     },
     {
       "name": "color",
