@@ -7,21 +7,25 @@
   "props": [
     {
       "name": "variable",
-      "displayName": "What is this progress for?",
+      "displayName": "What is this progress bar tracking?",
       "type": "number",
-      "default": 1
+      "role":  "autoSaveInput",
+      "default": 5,
+      "placeholder":  "Enter variable..."
     },
     {
       "name": "min",
       "displayName": "Min",
       "type": "number",
-      "default": 0
+      "default": 0,
+      "placeholder": "Enter minimum value..."
     },
     {
       "name": "max",
       "displayName": "Max",
       "type": "number",
-      "default": 20
+      "default": 20,
+      "placeholder":  "Enter maximum value..."
     },
     {
       "name": "color",
