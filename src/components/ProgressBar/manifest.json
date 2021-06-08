@@ -60,17 +60,6 @@
           "default": ""
         }
       ]
-    },
-    {
-      "name": "styleChoices",
-      "displayName": "Styles",
-      "props": [
-        {
-          "name": "enabled",
-          "type": "boolean",
-          "default": true
-        }
-      ]
     }
   ]
 }

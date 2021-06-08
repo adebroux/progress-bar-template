@@ -4,6 +4,8 @@ import { Text, View, StyleSheet } from 'react-native'
 const ProgressBar = props => {
     const { variable, min, max, color, secondaryColor, titleSection, startAnimation } = props
     const { enabled, title } = titleSection
+    //const [firstBar, setFirstBar] = useState(0)
+    //const [ secondBar, setSecondBar ] = useState(0)
     let titleText;
 
     if (typeof (min) !== 'number') {
@@ -18,8 +20,12 @@ const ProgressBar = props => {
         variable = (min + max) / 2
     }
 
-    let firstBar = variable - min
-    let secondBar = max - variable
+    if (enabled) {
+        titleText = (<Text style={{ color:color, paddingLeft: 20 }}>{title}</Text>);
+    }
+
+    const firstBar = variable - min
+    const secondBar = max - variable
     if (variable === 0) {
         if (max === 0) {
             if (min === 0) {
@@ -32,9 +38,34 @@ const ProgressBar = props => {
         }
     }
 
-    if (enabled) {
-        titleText = (<Text style={{ color:color, paddingLeft: 20 }}>{title}</Text>);
-    }
+    //useEffect(() => {
+    //    firstBar = variable - min
+    //    secondBar = max - variable
+    //    if (variable === 0) {
+    //        if (max === 0) {
+    //            if (min === 0) {
+    //                setFirstBar(() => 0.25)
+    //                setSecondBar(() => 0.75)
+    //            }
+    //            else {
+    //                setSecondBar(() => 1)
+    //            }
+    //        }
+    //    }
+    //}, [])
+
+    //useEffect((prevVariable) => {
+    //    const interval = (variable - prevVariable) / 20
+    //    let timer = setInterval(function () {
+    //        setFirstBar(prev => prev + interval)
+    //        setSecondBar(prev => prev - interval)
+    //        if ((firstBar + interval) >= (variable - min)) {
+    //            setFirstBar(() => variable - min)
+    //            setSecondBar(() => max - variable)
+    //            clearInterval(timer)
+    //        }
+    //    }, 50)
+    //}, [variable])
 
     return (
         <View>
