@@ -2,12 +2,21 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
 const ProgressBar = props => {
-    const { variable, min, max, color, secondaryColor, titleSection } = props
-    const { title } = titleSection
+    const { variable, min, max, color, secondaryColor, titleSection, startAnimation } = props
+    const { enabled, title } = titleSection
+    let titleText;
 
-    useEffect(() => {
+    if (typeof (min) !== 'number') {
+        min = 0
+    }
 
-    }, [variable])
+    if (typeof (max) !== 'number') {
+        max = min + 10
+    }
+
+    if (typeof (variable) !== 'number') {
+        variable = (min + max) / 2
+    }
 
     let firstBar = variable - min
     let secondBar = max - variable
@@ -23,30 +32,25 @@ const ProgressBar = props => {
         }
     }
 
-    if (typeof (min) !== 'number') {
-        min = 0
-    }
-
-    if (typeof (max) !== 'number') {
-        max = min + 10
-    }
-
-    if (typeof (variable) !== 'number') {
-        variable = (min + max) / 2
+    if (enabled) {
+        titleText = (<Text style={{ color:color, paddingLeft: 20 }}>{title}</Text>);
     }
 
     return (
+        <View>
+            {titleText}
             <View style={styles.wrapper}>
                 <View style={{ backgroundColor: secondaryColor, flex: firstBar, height: 10 }} />
                 <View style={{ backgroundColor: color, flex: secondBar, height: 10 }} />
             </View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
     flexDirection: "row",
