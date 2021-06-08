@@ -6,14 +6,6 @@
   "icon": "./example-thumbnail.png",
   "props": [
     {
-      "name": "title",
-      "displayName": "Title",
-      "type": "text",
-      "default": "",
-      "placeholder": "Enter title...",
-      "enabled":  true
-    },
-    {
       "name": "variable",
       "displayName": "What is this progress bar tracking?",
       "type": "number",
@@ -47,6 +39,22 @@
       "displayName": "Secondary Color",
       "type": "color",
       "default": "#57DAC9"
+    }
+  ],
+  "ChildComponents": [
+    {
+      "name": "title",
+      "displayName": "Title",
+      "props": [
+        {
+          "name": "title",
+          "displayName": "Title",
+          "type": "text",
+          "default": "",
+          "placeholder": "Enter title...",
+          "enabled": true
+        }
+      ]
     }
   ]
 }
