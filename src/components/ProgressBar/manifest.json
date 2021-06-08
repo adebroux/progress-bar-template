@@ -9,50 +9,66 @@
       "name": "variable",
       "displayName": "What is this progress bar tracking?",
       "type": "number",
-      "role": "autoSaveInput",
-      "default": 5,
-      "placeholder": 5,
-      "control": "dropdown"
+      "default": 5
     },
     {
       "name": "min",
       "displayName": "Min",
       "type": "number",
-      "default": 0,
-      "placeholder": 0
+      "default": 0
     },
     {
       "name": "max",
       "displayName": "Max",
       "type": "number",
-      "default": 20,
-      "placeholder": 20
+      "default": 20
     },
     {
       "name": "color",
-      "displayName": "Color",
+      "displayName": "Background Bar Color",
       "type": "color",
-      "default": "#00A898"
+      "default": "@primary"
     },
     {
       "name": "secondaryColor",
-      "displayName": "Secondary Color",
+      "displayName": "Progress Bar Color",
       "type": "color",
-      "default": "#57DAC9"
+      "default": "@secondary"
+    },
+    {
+      "name": "startAnimation",
+      "displayName": "Start animation",
+      "type": "boolean",
+      "default": false
     }
   ],
-  "ChildComponents": [
+  "childComponents": [
     {
-      "name": "title",
+      "name": "titleSection",
       "displayName": "Title",
       "props": [
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "default": true
+        },
         {
           "name": "title",
           "displayName": "Title",
           "type": "text",
-          "default": "",
           "placeholder": "Enter title...",
-          "enabled": true
+          "default": ""
+        }
+      ]
+    },
+    {
+      "name": "styleChoices",
+      "displayName": "Styles",
+      "props": [
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "default": true
         }
       ]
     }
