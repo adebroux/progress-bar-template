@@ -11,21 +11,21 @@
       "type": "number",
       "role":  "autoSaveInput",
       "default": 5,
-      "placeholder":  "Enter variable..."
+      "placeholder":  5
     },
     {
       "name": "min",
       "displayName": "Min",
       "type": "number",
       "default": 0,
-      "placeholder": "Enter minimum value..."
+      "placeholder": 0
     },
     {
       "name": "max",
       "displayName": "Max",
       "type": "number",
       "default": 20,
-      "placeholder":  "Enter maximum value..."
+      "placeholder":  20
     },
     {
       "name": "color",
