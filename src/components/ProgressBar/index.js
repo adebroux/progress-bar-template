@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
 const ProgressBar = props => {
-    const { variable, min, max, color, secondaryColor } = props
+    const { title, variable, min, max, color, secondaryColor } = props
     let firstBar = variable - min
     let secondBar = max - variable
     if (variable == 0) {
@@ -16,15 +16,13 @@ const ProgressBar = props => {
             }
         }
     }
-    console.log("Min:" + min)
-    console.log("Max:" + max)
-    console.log("Variable:" + variable)
-    console.log("First bar:" + firstBar)
-    console.log("Second Bar:" + secondBar)
     return (
-        <View style={styles.wrapper}>
-            <View style={{ backgroundColor: secondaryColor, flex: firstBar, height: 10 }} />
-            <View style={{ backgroundColor: color, flex: secondBar, height: 10 }} />
+        <View>
+            <Text>{title}</Text>
+            <View style={styles.wrapper}>
+                <View style={{ backgroundColor: secondaryColor, flex: firstBar, height: 10 }} />
+                <View style={{ backgroundColor: color, flex: secondBar, height: 10 }} />
+            </View>
         </View>
     )
 }
@@ -32,9 +30,10 @@ const ProgressBar = props => {
 const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
     height: 50,
+    padding: 20,
     flexDirection: "row",
   },
 })

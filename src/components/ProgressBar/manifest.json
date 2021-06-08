@@ -1,17 +1,26 @@
 {
   "displayName": "Progress Bar",
   "defaultWidth": 160,
-  "defaultHeight": 24,
+  "defaultHeight": 50,
   "components": "./index.js",
   "icon": "./example-thumbnail.png",
   "props": [
     {
+      "name": "title",
+      "displayName": "Title",
+      "type": "text",
+      "default": "",
+      "placeholder": "Enter title...",
+      "enabled":  true
+    },
+    {
       "name": "variable",
       "displayName": "What is this progress bar tracking?",
       "type": "number",
-      "role":  "autoSaveInput",
+      "role": "autoSaveInput",
       "default": 5,
-      "placeholder":  5
+      "placeholder": 5,
+      "control": "dropdown"
     },
     {
       "name": "min",
@@ -25,7 +34,7 @@
       "displayName": "Max",
       "type": "number",
       "default": 20,
-      "placeholder":  20
+      "placeholder": 20
     },
     {
       "name": "color",
