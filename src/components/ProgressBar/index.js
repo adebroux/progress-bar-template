@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Animated, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
 const ProgressBar = props => {
-    let { variable, min, max, color, secondaryColor, styleSection, titleSection, startAnimation } = props
+    let { variable, min, max, color, secondaryColor, styleSection, titleSection } = props
     const [firstBar, setFirstBar] = useState(0.25)
     const [ secondBar, setSecondBar ] = useState(0.75)
-    //const firstBar = useRef(new Animated.Value(0)).current
-    //const secondBar = useRef(new Animated.Value(1)).current
     let titleEnabled, roundEnabled = false
     let titleInput = ""
     let titleText;
@@ -20,7 +18,7 @@ const ProgressBar = props => {
     }
 
     if (typeof (styleSection) !== 'undefined') {
-        const { styleSelection } = styleSection
+        const { styleSelection, shadow } = styleSection
         if (styleSelection) {
             progressStyles.push(styles.roundedLeft)
             backgroundStyles.push(styles.roundedRight)
@@ -65,36 +63,12 @@ const ProgressBar = props => {
         }
     })
 
-    //useEffect((prevVariable, prevMin, prevMax) => {
-    //    const interval = (variable - prevVariable) / 20
-    //    let timer = setInterval(function () {
-    //        setFirstBar(prev => prev + interval)
-    //        setSecondBar(prev => prev - interval)
-    //        if ((firstBar + interval) >= (variable - min)) {
-    //            setFirstBar(() => variable - min)
-    //            setSecondBar(() => max - variable)
-    //            clearInterval(timer)
-    //        }
-    //    }, 50)
-    //    console.log("Did change. First bar: " + firstBar + ". Second bar: " + secondBar)
-    //}, [variable])
-
-    //useEffect(() => {
-    //    Animated.timing(
-    //        firstBar,
-    //        {
-    //            toValue: variable - min,
-    //            duration: 3000
-    //        }
-    //    ).start()
-    //}, [firstBar])//Haven't factored in secondBar at all. Fix
-
     return (
         <View>
             {titleText}
-            <View style={ styles.wrapper }>
-                <View style={progressStyles} />
-                <View style={ backgroundStyles } />
+            <View style={styles.wrapper}>
+                <View style={ progressStyles } />
+                <View style={backgroundStyles} />
             </View>
         </View>
     )

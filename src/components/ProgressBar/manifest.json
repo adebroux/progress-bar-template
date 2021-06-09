@@ -1,5 +1,5 @@
 {
-  "displayName": "Progress Bar",
+  "displayName": "Alicia De Broux Progress Bar",
   "defaultWidth": 160,
   "defaultHeight": 50,
   "components": "./index.js",
@@ -34,12 +34,6 @@
       "displayName": "Progress Bar Color",
       "type": "color",
       "default": "@secondary"
-    },
-    {
-      "name": "startAnimation",
-      "displayName": "Start animation",
-      "type": "boolean",
-      "default": false
     }
   ],
   "childComponents": [
@@ -61,7 +55,7 @@
               },
               {
                 "label": "Rounded",
-                "value":  1
+                "value": 1
               }
             ]
           }
