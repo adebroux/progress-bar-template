@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
 const ProgressBar = props => {
     const { variable, min, max, color, secondaryColor, titleSection, startAnimation } = props
-    const { enabled, title } = titleSection
-    //const [firstBar, setFirstBar] = useState(0)
-    //const [ secondBar, setSecondBar ] = useState(0)
+    //const [firstBar, setFirstBar] = useState(0.25)
+    //const [ secondBar, setSecondBar ] = useState(0.75)
+    let titleEnabled = false
+    let titleInput = ""
     let titleText;
+
+    if (typeof (titleSection) !== 'undefined') {
+        const { enabled, title } = titleSection
+        titleEnabled = enabled
+        titleInput = title
+    }
+    else {
+
+    }
 
     if (typeof (min) !== 'number') {
         min = 0
@@ -20,12 +30,12 @@ const ProgressBar = props => {
         variable = (min + max) / 2
     }
 
-    if (enabled) {
-        titleText = (<Text style={{ color:color, paddingLeft: 20 }}>{title}</Text>);
+    if (titleEnabled) {
+        titleText = (<Text style={{ color:color, paddingLeft: 20 }}>{titleInput}</Text>);
     }
 
-    const firstBar = variable - min
-    const secondBar = max - variable
+    let firstBar = variable - min
+    let secondBar = max - variable
     if (variable === 0) {
         if (max === 0) {
             if (min === 0) {
@@ -39,8 +49,8 @@ const ProgressBar = props => {
     }
 
     //useEffect(() => {
-    //    firstBar = variable - min
-    //    secondBar = max - variable
+    //    setFirstBar( () => variable - min)
+    //    setSecondBar(() => max - variable)
     //    if (variable === 0) {
     //        if (max === 0) {
     //            if (min === 0) {
@@ -52,6 +62,7 @@ const ProgressBar = props => {
     //            }
     //        }
     //    }
+    //    console.log("Did mount. First bar: " + firstBar +". Second bar: " + secondBar)
     //}, [])
 
     //useEffect((prevVariable) => {
