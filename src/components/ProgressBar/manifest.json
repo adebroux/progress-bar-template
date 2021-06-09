@@ -44,6 +44,31 @@
   ],
   "childComponents": [
     {
+      "name": "styleSection",
+      "displayName": "Styles",
+      "props": [
+        {
+          "name": "styleSelection",
+          "displayName": "Style Selection",
+          "type": "number",
+          "default": 0,
+          "control": {
+            "type": "menu",
+            "options": [
+              {
+                "label": "Default",
+                "value": 0
+              },
+              {
+                "label": "Rounded",
+                "value":  1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "name": "titleSection",
       "displayName": "Title",
       "props": [

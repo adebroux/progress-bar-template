@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, Text, View } from 'react-native'
 
 const ProgressBar = props => {
-    const { variable, min, max, color, secondaryColor, titleSection, startAnimation } = props
+    let { variable, min, max, color, secondaryColor, styleSection, titleSection, startAnimation } = props
+    //const { styleSelection } = styleSection
     const [firstBar, setFirstBar] = useState(0.25)
     const [ secondBar, setSecondBar ] = useState(0.75)
     //const firstBar = useRef(new Animated.Value(0)).current
@@ -16,58 +17,40 @@ const ProgressBar = props => {
         titleEnabled = enabled
         titleInput = title
     }
-    else {
-
-    }
-
-    if (typeof (min) !== 'number') {
-        min = 0
-    }
-
-    if (typeof (max) !== 'number') {
-        max = min + 10
-    }
-
-    if (typeof (variable) !== 'number') {
-        variable = (min + max) / 2
-    }
 
     if (titleEnabled) {
-        titleText = (<Text style={{ color:color, paddingLeft: 20 }}>{titleInput}</Text>);
+        titleText = (<Text style={{ color: color, paddingLeft: 20, fontWeight: 600 }}>{titleInput}</Text>);
     }
 
-    //let firstBar = variable - min
-    //let secondBar = max - variable
-    //if (variable === 0) {
-    //    if (max === 0) {
-    //        if (min === 0) {
-    //            firstBar = 0.25
-    //            secondBar = 0.75
-    //        }
-    //        else {
-    //            secondBar = 1
-    //        }
-    //    }
-    //}
-
     useEffect(() => {
+        if (typeof (min) !== 'number') {
+            min = 0
+        }
+
+        if (typeof (max) !== 'number') {
+            max = min + 10
+        }
+
+        if (typeof (variable) !== 'number') {
+            variable = (min + max) / 4
+        }
+
         setFirstBar(() => variable - min)
         setSecondBar(() => max - variable)
         if (variable === 0) {
             if (max === 0) {
                 if (min === 0) {
-                    setFirstBar(() => 0.3)
-                    setSecondBar(() => 0.7)
+                    setFirstBar(() => 0.25)
+                    setSecondBar(() => 0.75)
                 }
                 else {
                     setSecondBar(() => 1)
                 }
             }
         }
-        console.log("Did mount. First bar: " + firstBar +". Second bar: " + secondBar)
     })
 
-    //useEffect((prevVariable) => {
+    //useEffect((prevVariable, prevMin, prevMax) => {
     //    const interval = (variable - prevVariable) / 20
     //    let timer = setInterval(function () {
     //        setFirstBar(prev => prev + interval)
@@ -94,22 +77,30 @@ const ProgressBar = props => {
     return (
         <View>
             {titleText}
-            <View style={styles.wrapper}>
-                <View style={{ backgroundColor: secondaryColor, flex: firstBar, height: 10 }} />
-                <View style={{ backgroundColor: color, flex: secondBar, height: 10 }} />
+            <View style={ styles.wrapper }>
+                <View style={{ backgroundColor: secondaryColor, flex: firstBar, height: 10, borderBottomLeftRadius: 5, borderTopLeftRadius: 5 }} />
+                <View style={{ backgroundColor: color, flex: secondBar, height: 10, borderBottomRightRadius: 5, borderTopRightRadius: 5 }} />
             </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-    flexDirection: "row",
-  },
+    wrapper: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
+        flexDirection: "row",
+    },
+    roundedLeft: {
+        borderBottomLeftRadius: 5,
+        borderTopLeftRadius: 5,
+    },
+    roundedRight: {
+        borderBottomRightRadius: 5,
+        borderTopRightRadius: 5,
+    },
 })
 
 export default ProgressBar
