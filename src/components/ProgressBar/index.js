@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { Animated, StyleSheet, Text, View } from 'react-native'
 
 const ProgressBar = props => {
     const { variable, min, max, color, secondaryColor, titleSection, startAnimation } = props
-    //const [firstBar, setFirstBar] = useState(0.25)
-    //const [ secondBar, setSecondBar ] = useState(0.75)
+    const [firstBar, setFirstBar] = useState(0.25)
+    const [ secondBar, setSecondBar ] = useState(0.75)
+    //const firstBar = useRef(new Animated.Value(0)).current
+    //const secondBar = useRef(new Animated.Value(1)).current
     let titleEnabled = false
     let titleInput = ""
     let titleText;
@@ -34,36 +36,36 @@ const ProgressBar = props => {
         titleText = (<Text style={{ color:color, paddingLeft: 20 }}>{titleInput}</Text>);
     }
 
-    let firstBar = variable - min
-    let secondBar = max - variable
-    if (variable === 0) {
-        if (max === 0) {
-            if (min === 0) {
-                firstBar = 0.25
-                secondBar = 0.75
-            }
-            else {
-                secondBar = 1
-            }
-        }
-    }
-
-    //useEffect(() => {
-    //    setFirstBar( () => variable - min)
-    //    setSecondBar(() => max - variable)
-    //    if (variable === 0) {
-    //        if (max === 0) {
-    //            if (min === 0) {
-    //                setFirstBar(() => 0.25)
-    //                setSecondBar(() => 0.75)
-    //            }
-    //            else {
-    //                setSecondBar(() => 1)
-    //            }
+    //let firstBar = variable - min
+    //let secondBar = max - variable
+    //if (variable === 0) {
+    //    if (max === 0) {
+    //        if (min === 0) {
+    //            firstBar = 0.25
+    //            secondBar = 0.75
+    //        }
+    //        else {
+    //            secondBar = 1
     //        }
     //    }
-    //    console.log("Did mount. First bar: " + firstBar +". Second bar: " + secondBar)
-    //}, [])
+    //}
+
+    useEffect(() => {
+        setFirstBar(() => variable - min)
+        setSecondBar(() => max - variable)
+        if (variable === 0) {
+            if (max === 0) {
+                if (min === 0) {
+                    setFirstBar(() => 0.3)
+                    setSecondBar(() => 0.7)
+                }
+                else {
+                    setSecondBar(() => 1)
+                }
+            }
+        }
+        console.log("Did mount. First bar: " + firstBar +". Second bar: " + secondBar)
+    }, [])
 
     //useEffect((prevVariable) => {
     //    const interval = (variable - prevVariable) / 20
@@ -76,7 +78,18 @@ const ProgressBar = props => {
     //            clearInterval(timer)
     //        }
     //    }, 50)
+    //    console.log("Did change. First bar: " + firstBar + ". Second bar: " + secondBar)
     //}, [variable])
+
+    //useEffect(() => {
+    //    Animated.timing(
+    //        firstBar,
+    //        {
+    //            toValue: variable - min,
+    //            duration: 3000
+    //        }
+    //    ).start()
+    //}, [firstBar])//Haven't factored in secondBar at all. Fix
 
     return (
         <View>
