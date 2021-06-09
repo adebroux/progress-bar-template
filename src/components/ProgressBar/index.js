@@ -3,19 +3,34 @@ import { Animated, StyleSheet, Text, View } from 'react-native'
 
 const ProgressBar = props => {
     let { variable, min, max, color, secondaryColor, styleSection, titleSection, startAnimation } = props
-    //const { styleSelection } = styleSection
     const [firstBar, setFirstBar] = useState(0.25)
     const [ secondBar, setSecondBar ] = useState(0.75)
     //const firstBar = useRef(new Animated.Value(0)).current
     //const secondBar = useRef(new Animated.Value(1)).current
-    let titleEnabled = false
+    let titleEnabled, roundEnabled = false
     let titleInput = ""
     let titleText;
+    let backgroundStyles = [{ backgroundColor: color, flex: secondBar, height: 10 }]
+    let progressStyles = [{ backgroundColor: secondaryColor, flex: firstBar, height: 10 }]
 
     if (typeof (titleSection) !== 'undefined') {
         const { enabled, title } = titleSection
         titleEnabled = enabled
         titleInput = title
+    }
+
+    if (typeof (styleSection) !== 'undefined') {
+        const { styleSelection } = styleSection
+        if (styleSelection) {
+            progressStyles.push(styles.roundedLeft)
+            backgroundStyles.push(styles.roundedRight)
+            if (firstBar === 0) {
+                backgroundStyles.push(styles.roundedLeft)
+            }
+            if (secondBar === 0) {
+                progressStyles.push(styles.roundedRight)
+            }
+        }
     }
 
     if (titleEnabled) {
@@ -78,8 +93,8 @@ const ProgressBar = props => {
         <View>
             {titleText}
             <View style={ styles.wrapper }>
-                <View style={{ backgroundColor: secondaryColor, flex: firstBar, height: 10, borderBottomLeftRadius: 5, borderTopLeftRadius: 5 }} />
-                <View style={{ backgroundColor: color, flex: secondBar, height: 10, borderBottomRightRadius: 5, borderTopRightRadius: 5 }} />
+                <View style={progressStyles} />
+                <View style={ backgroundStyles } />
             </View>
         </View>
     )
