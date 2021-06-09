@@ -65,7 +65,7 @@ const ProgressBar = props => {
             }
         }
         console.log("Did mount. First bar: " + firstBar +". Second bar: " + secondBar)
-    }, [])
+    })
 
     //useEffect((prevVariable) => {
     //    const interval = (variable - prevVariable) / 20
