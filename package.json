@@ -1,5 +1,5 @@
 {
-  "name": "progress-bar",
+  "name": "alicia-de-broux-progress-bar",
   "description": "Progress Bar Project for Summer 2020 Onboarding",
   "version": "1.0.0",
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "adalo": {
     "logo": "./example-logo.png",
-    "displayName": "Progress Bar",
+    "displayName": "Alicia De Broux Progress Bar",
     "components": [
       {
         "name": "ProgressBar",
