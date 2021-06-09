@@ -24,10 +24,10 @@ const ProgressBar = props => {
         if (styleSelection) {
             progressStyles.push(styles.roundedLeft)
             backgroundStyles.push(styles.roundedRight)
-            if (firstBar === 0) {
+            if (firstBar <= 0) {
                 backgroundStyles.push(styles.roundedLeft)
             }
-            if (secondBar === 0) {
+            if (secondBar <= 0) {
                 progressStyles.push(styles.roundedRight)
             }
         }
